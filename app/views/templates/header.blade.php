@@ -1,6 +1,6 @@
 <nav class="top-nav">
   <div>
-  <h1 class="brand"><a href="{{ route('timeline') }}">Latweet</a></h1>
+  <h1 class="brand"><a href="{{ route('timeline') }}">Curcol</a></h1>
   <ul class="list-nav">
     <li class="user-fullname">
       @if(Session::has(User::$sessionField['fullname']))

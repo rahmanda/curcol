@@ -7,7 +7,7 @@
 @section('content')
 @include('templates.flash')
 <div class="form-login">
-<h1 class="form-title">Latweet</h1>
+<h1 class="form-title">Curcol</h1>
 {{ Form::open(array('url' => 'login')) }}
 
 <div class="input input-username">
