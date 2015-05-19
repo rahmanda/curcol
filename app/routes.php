@@ -26,6 +26,8 @@ Route::get('/', array('as' => 'home', function() {
   return View::make('login');
 }));
 
+Route::get('search', array('as' => 'search', 'uses' => 'UserController@search'));
+
 Route::get('register', array('as' => 'register', function() {
   if(Session::has(User::$sessionField['username'])) {
     return Redirect::route('timeline');
@@ -60,13 +62,13 @@ Route::get('profile/{username}', array(
   'uses' => 'TimelineController@profileTimeline'
   ));
 
-Route::post('follow', array(
+Route::get('follow/{to_follow_id}', array(
   'as' => 'follow', 
   'before' => 'isLoggedIn', 
   'uses' => 'UserController@follow'
   ));
 
-Route::post('unfollow', array(
+Route::get('unfollow/{to_unfollow_id}', array(
   'as' => 'unfollow', 
   'before' => 'isLoggedIn', 
   'uses' => 'UserController@unfollow'));
@@ -76,3 +78,10 @@ Route::post('tweet', array(
   'before' => 'isLoggedIn', 
   'uses' => 'TimelineController@tweet'
   ));
+
+Route::get('test/{query}', function($query) {
+  $users = User::where('username', 'LIKE', '%'.$query.'%')
+              ->orWhere('fullname', 'LIKE', '%'.$query.'%')
+              ->get();
+  return Response::make($users);
+});

@@ -68,9 +68,9 @@ class UserController extends \BaseController {
    * 
    * @return Response
    */
-  public function follow() 
+  public function follow($toFollowId) 
   {
-  	$toFollowId = Input::get('to_follow_id');
+  	// $toFollowId = Input::get('to_follow_id');
   	$userId = Auth::user()->id;
 
   	if(!$toFollowId) {
@@ -80,27 +80,27 @@ class UserController extends \BaseController {
   			));
   	}
 
-  	$toFollow = User::where('id', $userId)
-  									->where('followedId', $toFollowId)
-  									->first();
+  	$toFollow = Follower::where('id', $userId)
+        								->where('followed_id', $toFollowId)
+        								->first();
 
   	if(!$toFollow) {
-  		return Redirect::back()->withErrors(array(
-  			'message' => 'The parameter that you\'ve sent is not exist in database',
-  			'status'	=> false
-  			));
+      $follower = new Follower;
+      $follower->id = $userId;
+      $follower->followed_id = $toFollowId;
+      $follower->timestamps = false;
+      $follower->save();
+
+      return Redirect::back()->with(array(
+        'message' => 'You have successfully followed another user',
+        'status'  => true
+        ));
   	}
 
-  	$follower = new Follower;
-  	$follower->id = $userId;
-  	$follower->followed_id = $toFollowId;
-  	$follower->timestamps = false;
-  	$follower->save();
-
-  	return Redirect::back()->with(array(
-  		'message' => 'You have successfully followed another user',
-  		'status'	=> true
-  		));
+    return Redirect::back()->withErrors(array(
+      'message' => 'The parameter that you\'ve sent is not exist in database',
+      'status'  => false
+      ));
   }
 
   /**
@@ -108,9 +108,8 @@ class UserController extends \BaseController {
    * 
    * @return Response
    */
-  public function unfollow()
+  public function unfollow($toUnfollowId)
   {
-  	$toUnfollowId = Input::get('to_unfollow_id');
   	$userId = Auth::user()->id;
 
   	if(!$toUnfollowId) {
@@ -120,9 +119,9 @@ class UserController extends \BaseController {
   			));
   	}
 
-  	$toUnfollow = User::where('id', $userId)
-		  								->where('followedId', $toUnfollowId)
-		  								->first();
+  	$toUnfollow = DB::table('followers')
+                      ->where('id', $userId)
+		  								->where('followed_id', $toUnfollowId);
 
   	if(!$toUnfollow) {
   		return Redirect::back()->withErrors(array(
@@ -137,6 +136,32 @@ class UserController extends \BaseController {
   		'message' => 'You have successfully unfollowed another user',
   		'status'	=> true
   		));
+  }
+
+  public function search()
+  {
+    $query = Input::get('query');
+
+    $user_id = Auth::user()->id;
+    $follows = Follower::where('id', $user_id)->select('followed_id')->get();
+    $followIds = array();
+
+    foreach($follows as $follow) {
+      array_push($followIds, $follow->followed_id);
+    }
+
+    if($query) {
+      $results = User::where('fullname', 'LIKE', '%'.$query.'%')
+                      ->where('username', '!=', Auth::user()->username)
+                      ->get();
+      return View::make('search', array(
+        'query' => $query,
+        'results' => $results,
+        'followIds'  => $followIds
+      ));
+    }
+
+    return Redirect::route('home');
   }
 
 }

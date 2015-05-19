@@ -13,5 +13,10 @@
       <a href="{{ route('logout') }}">logout</a>
     </li>
   </ul>
+  <div class="form-search">
+  {{ Form::open(array('url' => 'search', 'method' => 'GET')) }}
+  {{ Form::text('query', Input::old('query'), array('placeholder' => 'Pencarian')) }}
+  {{ Form::close() }}
+  </div>
   </div>
 </nav>

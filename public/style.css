@@ -90,12 +90,13 @@ a {
 .top-nav div {
   max-width: 784px;
   margin: 0 auto;
+  overflow: hidden;
 }
 
 .top-nav .brand {
   float: left;
   font-family: 'Nunito', 'Oxygen', Helvetica, Sans-serif;
-  line-height: 1.5em;
+  line-height: 2em;
   font-size: 1.5em;
 }
 
@@ -106,7 +107,17 @@ a {
 .top-nav .list-nav li {
   float: left;
   padding-left: 1em;
-  line-height: 2.15em;
+  line-height: 2.85em;
+}
+
+.top-nav .form-search {
+  float: right;
+  margin-top: .5em;
+}
+
+.top-nav .form-search input {
+  border: 1px solid #5FA1E0;
+  padding: .25em .5em;
 }
 
 /**
@@ -114,7 +125,7 @@ a {
  */
 .timeline {
   max-width: 784px;
-  margin: 2em auto 0 auto;
+  margin: 2em auto;
   border: 1px solid #CCCCCC;
 }
 
@@ -346,3 +357,91 @@ a {
 .box-tweet {
   clear: both;
 }
+
+/**
+ * Search result
+ *
+ * search item use flexboxgrid.com
+ */
+
+.query-title {
+  background-color: #00305E;
+  padding: 1em 1.5em;
+}
+.query-title h2 {
+  max-width: 784px;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  font-size: 1.75em;
+}
+
+.search-result {
+  max-width: 784px;
+  margin: 0 auto !important;
+  padding: 2em 0;
+}
+
+.search-item {
+  margin-bottom: 1em;
+}
+
+.search-item > div {
+  position: relative;
+  border: 1px solid #CCCCCC;
+  height: 300px;
+}
+
+.search-item > div header {
+  height: 150px;
+  overflow: hidden;
+  background: #BBBBBB;
+}
+
+.search-item > div header .img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  margin: 2em auto 0 auto;
+  background-color: #505050;
+  border: 5px solid #EEEEEE;
+  border-radius: 50%;
+}
+
+.search-item > div .info {
+  padding: 10px;
+}
+
+.search-item > div .info .username, 
+.search-item > div .info .fullname {
+  display: block;
+}
+
+.search-item > div .info .fullname {
+  font-size: 1.15em;
+  font-weight: 700;
+  margin-bottom: .25em;
+}
+
+.search-item > div .info .username {
+  color: #AAAAAA;
+}
+
+.search-item > div .act {
+  display: block;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+
+.search-item > div .act .btn-follow, .search-item > div .act .btn-unfollow {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  padding: .5em 1em;
+  color: white;
+  font-weight: 700;
+  background: #00305E;
+}
+

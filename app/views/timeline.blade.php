@@ -28,33 +28,18 @@
 </div>
 @endif
 @if(isset($tweets))
-  @if(Route::currentRouteName() == 'timeline')
-    @foreach($tweets as $tweet)
-    <div class="tweet">
-      <header>
-        <ul class="list-userdata">
-          <li class="userdata-fullname"><a href="{{ route('profile', $tweet->username) }}">{{ $tweet->fullname }}</a></li>
-          <li class="userdata-username">@<a href="{{ route('profile', $tweet->username) }}">{{ $tweet->username }}</a></li>
-          <li class="userdata-date"><a href="#">{{ date_format(date_create($tweet->created_at), 'd M Y') }}</a></li>
-        </ul>
-      </header>
-      <p class="message">{{ $tweet->tweet }}</p>
-    </div>
-    @endforeach
-  @else
   @foreach($tweets as $tweet)
-    <div class="tweet">
-      <header>
-        <ul class="list-userdata">
-          <li class="userdata-fullname"><a href="{{ route('profile', $profile->username) }}">{{ $profile->fullname }}</a></li>
-          <li class="userdata-username">@<a href="{{ route('profile', $profile->username) }}">{{ $profile->username }}</a></li>
-          <li class="userdata-date"><a href="#">{{ date_format(date_create($tweet->created_at), 'd M Y') }}</a></li>
-        </ul>
-      </header>
-      <p class="message">{{ $tweet->tweet }}</p>
-    </div>
+  <div class="tweet">
+    <header>
+      <ul class="list-userdata">
+        <li class="userdata-fullname"><a href="{{ route('profile', $tweet->username) }}">{{ $tweet->fullname }}</a></li>
+        <li class="userdata-username">@<a href="{{ route('profile', $tweet->username) }}">{{ $tweet->username }}</a></li>
+        <li class="userdata-date"><a href="#">{{ date_format(date_create($tweet->created_at), 'd M Y') }}</a></li>
+      </ul>
+    </header>
+    <p class="message">{{ $tweet->tweet }}</p>
+  </div>
   @endforeach
-  @endif
 @endif
 </div>
 @stop

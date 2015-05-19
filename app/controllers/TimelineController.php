@@ -19,14 +19,19 @@ class TimelineController extends \BaseController {
 	public function timeline()
 	{
 		$user_id = Auth::user()->id;
-		$tweets = DB::table('followers')
-								->join('tweets', 'followers.followed_id', '=', 'tweets.user_id')
-								->join('users', 'followers.followed_id', '=', 'users.id')
-								->select('users.id', 'users.username', 'users.fullname', 'tweets.tweet', 'tweets.user_id', 'tweets.created_at')
-								->where('followers.followed_id', $user_id)
-								->orderBy('tweets.created_at', 'desc')
-								->take(30)
-								->get();
+		$follows = Follower::where('id', $user_id)->select('followed_id')->get();
+		$followIds = array();
+
+		foreach($follows as $follow) {
+			array_push($followIds, $follow->followed_id);
+		}
+
+		$tweets = DB::table('tweets')
+							->join('users', 'users.id', '=','tweets.user_id')
+							->whereIn('users.id', $followIds)
+							->orderBy('tweets.created_at', 'desc')
+							->take(30)
+							->get();
 
 		return View::make('timeline', array(
 			'tweets' => $tweets
@@ -42,11 +47,12 @@ class TimelineController extends \BaseController {
 	{
 		$user = User::where('username', $username)->first();
 		if($user) {
-			$tweets = User::find($user->id)
-										->tweets()
-										->orderBy('created_at', 'desc')
-										->take(30)
-										->get();
+			$tweets = DB::table('tweets')
+									->join('users', 'users.id', '=','tweets.user_id')
+									->where('users.id', $user->id)
+									->orderBy('tweets.created_at', 'desc')
+									->take(30)
+									->get();
 		} else {
 			App::abort(404);
 		}
