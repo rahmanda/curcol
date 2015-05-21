@@ -17,7 +17,7 @@
   <div class="input input-tweet">
     <textarea name="tweet" spellcheck="false" placeholder="What is happening?"></textarea>
   </div>
-  <div class="input input-submit">{{ Form::submit('Tweet') }}</div>
+  <div class="input input-submit">{{ Form::submit('Post') }}</div>
   {{ Form::close() }}
 </div>
 @else
