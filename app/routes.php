@@ -79,9 +79,15 @@ Route::post('tweet', array(
   'uses' => 'TimelineController@tweet'
   ));
 
-Route::get('test/{query}', function($query) {
-  $users = User::where('username', 'LIKE', '%'.$query.'%')
-              ->orWhere('fullname', 'LIKE', '%'.$query.'%')
-              ->get();
-  return Response::make($users);
-});
+Route::get('setting', array(
+  'as'  => 'setting',
+  'before' => 'isLoggedIn',
+  'uses' => 'UserController@setting'
+  ));
+
+// Route::get('test/{query}', function($query) {
+//   $users = User::where('username', 'LIKE', '%'.$query.'%')
+//               ->orWhere('fullname', 'LIKE', '%'.$query.'%')
+//               ->get();
+//   return Response::make($users);
+// });
