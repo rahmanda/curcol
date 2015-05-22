@@ -7,7 +7,7 @@ class UserController extends \BaseController {
 	 * 
 	 * @var array
 	 */
-	private $registerRules = array(
+	private $rules = array(
 		'email' 						=> 'required|email',
 		'username' 					=> 'required|alphaNum|min:4',
     'fullname'          => 'required',
@@ -138,6 +138,11 @@ class UserController extends \BaseController {
   		));
   }
 
+  /**
+   * Search another account by name
+   * 
+   * @return View or Redirect
+   */
   public function search()
   {
     $query = Input::get('query');
