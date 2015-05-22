@@ -82,7 +82,9 @@ Route::post('tweet', array(
 Route::get('setting', array(
   'as'  => 'setting',
   'before' => 'isLoggedIn',
-  'uses' => 'UserController@setting'
+  function (){
+    View::make('setting');
+  }
   ));
 
 // Route::get('test/{query}', function($query) {
