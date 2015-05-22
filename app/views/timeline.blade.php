@@ -34,7 +34,7 @@
       <ul class="list-userdata">
         <li class="userdata-fullname"><a href="{{ route('profile', $tweet->username) }}">{{ $tweet->fullname }}</a></li>
         <li class="userdata-username">@<a href="{{ route('profile', $tweet->username) }}">{{ $tweet->username }}</a></li>
-        <li class="userdata-date"><a href="#">{{ date_format(date_create($tweet->created_at), 'd M Y') }}</a></li>
+        <li class="userdata-date"><a href="#">{{ date_format(date_create($tweet->updated_at), 'd M Y') }}</a></li>
       </ul>
     </header>
     <p class="message">{{ $tweet->tweet }}</p>
