@@ -268,7 +268,20 @@ a {
   outline: none;
 }
 
+.timeline .tweet-acts {
+  overflow: hidden;
+}
+
+.timeline .word-count {
+  float: right;
+  font-size: 1.75em;
+  line-height: 1.35em;
+  color: #AAAAAA;
+  margin-right: 10px;
+}
+
 .timeline .input-submit {
+  float: right;
   overflow: hidden;
 }
 
@@ -278,7 +291,6 @@ a {
   border: 1px solid #00305E;
   color: white;
   padding: .5em 1em;
-  float: right;
 }
 
 .timeline .input-submit input:hover {
@@ -587,6 +599,14 @@ a {
   margin-bottom: 1em;
 }
 
+.modal-post .content .word-count {
+  float: right;
+  font-size: 1.75em;
+  line-height: 1.35em;
+  color: #AAAAAA;
+  margin-right: 10px;
+}
+
 .modal-post .content textarea:focus {
   outline: none;
 }
@@ -601,5 +621,91 @@ a {
 }
 
 .modal-post .content .input-submit input:hover {
+  cursor: pointer;
+}
+
+/**
+ * Setting page
+ */
+
+.setting {
+  max-width: 784px;
+  margin: 2em auto;
+  border: 1px solid #CCCCCC;
+  z-index: 10;
+  overflow: hidden;
+}
+
+.setting .setting-header {
+  padding: .75em;
+}
+
+.setting .setting-header .title {
+  font-size: 1.75em;
+  margin-bottom: 10px;
+}
+
+.setting .content {
+  background: #ECECEC;
+}
+
+.setting .group-settings {
+  border-top: 1px solid #CCCCCC;
+}
+
+.setting .group-settings .input {
+  padding: .75em;
+}
+
+.setting .group-settings .input div {
+  overflow: hidden;
+  margin-bottom: .5em;
+}
+
+.setting .group-settings .input label {
+  display: block;
+  float: left;
+  width: 200px;
+  padding-right: 10px;
+  text-align: right;
+  line-height: 2.05em;
+}
+
+.setting .group-settings .input input {
+  float: left;
+  width: 200px;
+  padding: .25em .5em;
+}
+
+.setting .group-settings .input input:focus {
+  outline: none;
+}
+
+
+.setting .group-settings .input .desc {
+  clear: left;
+  padding-left: 200px;
+  font-size: .85em;
+  color: #074988;
+}
+
+.setting .setting-acts {
+  overflow: hidden;
+  padding: .75em;
+}
+
+.setting .setting-acts .input-submit {
+  float: right;
+}
+
+.setting .setting-acts .input-submit input {
+  font-weight: 700;
+  background-color: #00305E;
+  border: 1px solid #00305E;
+  color: white;
+  padding: .5em 1em;
+}
+
+.setting .setting-acts .input-submit input:hover {
   cursor: pointer;
 }
