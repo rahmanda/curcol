@@ -7,10 +7,11 @@
   <div class="content">
     {{ Form::open(array('url' => 'tweet')) }}
     <div class="input input-tweet">
-      <textarea name="tweet" spellcheck="false"></textarea>
+      <textarea name="tweet" spellcheck="false" maxlength="140"></textarea>
     </div>
     <div class="acts">
       <div class="input input-submit">{{ Form::submit('Post') }}</div>
+      <p class="word-count">140</p>
     </div>
     {{ Form::close() }}
   </div>
