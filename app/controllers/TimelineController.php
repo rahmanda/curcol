@@ -29,6 +29,7 @@ class TimelineController extends \BaseController {
 		$tweets = DB::table('tweets')
 							->join('users', 'users.id', '=','tweets.user_id')
 							->whereIn('users.id', $followIds)
+							->select('users.id', 'users.username', 'users.fullname', 'tweets.tweet', 'tweets.updated_at')
 							->orderBy('tweets.created_at', 'desc')
 							->take(30)
 							->get();
@@ -84,7 +85,7 @@ class TimelineController extends \BaseController {
 		$tweet->tweet = Input::get('tweet');
 		$tweet->save();
 
-		return Redirect::back()->with(array(
+		return Redirect::route('timeline')->with(array(
 			'message' => 'Your tweet has successfully been published',
 			'status'	=> true
 			));
