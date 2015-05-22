@@ -82,8 +82,16 @@ Route::post('tweet', array(
 Route::get('setting', array(
   'as'  => 'setting',
   'before' => 'isLoggedIn',
-  function (){
-    View::make('setting');
+  function () {
+    return View::make('setting', array('user' => Auth::user()));
+  }
+  ));
+
+Route::post('setting', array(
+  'as' => 'setting',
+  'before' => 'isLoggedIn',
+  function () {
+    return;
   }
   ));
 
