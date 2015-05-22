@@ -15,9 +15,12 @@
 <div class="box-tweet">
   {{ Form::open(array('url' => 'tweet')) }}
   <div class="input input-tweet">
-    <textarea name="tweet" spellcheck="false" placeholder="What is happening?"></textarea>
+    <textarea name="tweet" spellcheck="false" placeholder="What is happening?" maxlength='140'></textarea>
   </div>
-  <div class="input input-submit">{{ Form::submit('Post') }}</div>
+  <div class="tweet-acts">
+    <div class="input input-submit">{{ Form::submit('Post') }}</div>
+    <p class="word-count">140</p>
+  </div>
   {{ Form::close() }}
 </div>
 @else
