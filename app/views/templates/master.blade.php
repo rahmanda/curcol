@@ -10,9 +10,12 @@
     @include('templates.header')
   @endif
   @yield('content')
-  @if(in_array(Route::currentRouteName(), array('search', 'timeline', 'profile')))
+  @if(in_array(Route::currentRouteName(), array('search', 'timeline', 'profile', 'setting')))
   @include('templates.modal')
   @endif
   <script src="{{ URL::asset('js/main.js') }}" type="text/javascript" async></script>
+  @if(Route::currentRouteName() === 'timeline')
+  <script src="{{ URL::asset('js/timeline.js') }}" type="text/javascript" async></script>
+  @endif
 </body>
 </html>
