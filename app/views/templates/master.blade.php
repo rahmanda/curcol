@@ -6,7 +6,7 @@
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('style/flexboxgrid.min.css') }}">
 </head>
 <body>
-  @if(Route::currentRouteName() != 'home' && Route::currentRouteName() != 'register')
+  @if(!in_array(Route::currentRouteName(), array('home', 'register')))
     @include('templates.header')
   @endif
   @yield('content')
