@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>@yield('title')@if(Route::currentRouteName() != 'home') {{ ' - Latweet' }} @endif</title>
+  <title>@yield('title')@if(Route::currentRouteName() != 'home') {{ ' - Curcol' }} @endif</title>
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('style/style.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ URL::asset('style/flexboxgrid.min.css') }}">
 </head>

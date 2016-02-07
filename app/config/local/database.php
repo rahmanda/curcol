@@ -23,9 +23,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'latweet',
-			'username'  => 'latweet',
-			'password'  => 'latweet',
+			'database'  => 'curcol',
+			'username'  => 'curcol',
+			'password'  => 'curcol',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
